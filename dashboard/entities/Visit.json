@@ -1,0 +1,94 @@
+{
+  "name": "Visit",
+  "type": "object",
+  "properties": {
+    "client_name": {
+      "type": "string",
+      "description": "Name of the client being visited"
+    },
+    "client_address": {
+      "type": "string",
+      "description": "Address of the visit location"
+    },
+    "technician_name": {
+      "type": "string",
+      "description": "Name of the technician/employee"
+    },
+    "technician_email": {
+      "type": "string",
+      "description": "Email of the technician"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "in_progress",
+        "completed",
+        "cancelled"
+      ],
+      "default": "scheduled",
+      "description": "Current status of the visit"
+    },
+    "check_in_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the technician checked in"
+    },
+    "check_out_time": {
+      "type": "string",
+      "format": "date-time",
+      "description": "When the technician checked out"
+    },
+    "check_in_latitude": {
+      "type": "number",
+      "description": "GPS latitude at check-in"
+    },
+    "check_in_longitude": {
+      "type": "number",
+      "description": "GPS longitude at check-in"
+    },
+    "check_out_latitude": {
+      "type": "number",
+      "description": "GPS latitude at check-out"
+    },
+    "check_out_longitude": {
+      "type": "number",
+      "description": "GPS longitude at check-out"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Visit notes and observations"
+    },
+    "photos": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "URLs of photos taken during visit"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "description": "Total duration in minutes"
+    },
+    "scheduled_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when the visit is scheduled"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high",
+        "urgent"
+      ],
+      "default": "medium"
+    }
+  },
+  "required": [
+    "client_name",
+    "technician_name",
+    "status"
+  ]
+}

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, X, Sun, Moon, Globe } from 'lucide-react';
+import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { gsap } from 'gsap';
@@ -9,7 +9,7 @@ export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-  const { language, toggleLanguage, t } = useLanguage();
+  const { t } = useLanguage();
   const headerRef = useRef<HTMLElement>(null);
   const logoRef = useRef<HTMLDivElement>(null);
   const navLinksRef = useRef<HTMLDivElement>(null);
@@ -26,33 +26,39 @@ export default function Header() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        logoRef.current,
-        { opacity: 0, scale: 0.8 },
-        { opacity: 1, scale: 1, duration: 0.6, ease: 'expo.out', delay: 0 }
-      );
-
-      if (navLinksRef.current) {
-        const links = navLinksRef.current.querySelectorAll('a, button');
+      if (logoRef.current) {
         gsap.fromTo(
-          links,
-          { opacity: 0, y: -20 },
-          { 
-            opacity: 1, 
-            y: 0, 
-            duration: 0.4, 
-            ease: 'expo.out', 
-            stagger: 0.08,
-            delay: 0.1 
-          }
+          logoRef.current,
+          { opacity: 0, scale: 0.8 },
+          { opacity: 1, scale: 1, duration: 0.6, ease: 'expo.out', delay: 0 }
         );
       }
 
-      gsap.fromTo(
-        ctaRef.current,
-        { opacity: 0, scale: 0.9 },
-        { opacity: 1, scale: 1, duration: 0.5, ease: 'elastic.out(1, 0.5)', delay: 0.4 }
-      );
+      if (navLinksRef.current) {
+        const links = navLinksRef.current.querySelectorAll('a, button');
+        if (links.length > 0) {
+          gsap.fromTo(
+            links,
+            { opacity: 0, y: -20 },
+            { 
+              opacity: 1, 
+              y: 0, 
+              duration: 0.4, 
+              ease: 'expo.out', 
+              stagger: 0.08,
+              delay: 0.1 
+            }
+          );
+        }
+      }
+
+      if (ctaRef.current) {
+        gsap.fromTo(
+          ctaRef.current,
+          { opacity: 0, scale: 0.9 },
+          { opacity: 1, scale: 1, duration: 0.5, ease: 'elastic.out(1, 0.5)', delay: 0.4 }
+        );
+      }
     }, headerRef);
 
     return () => ctx.revert();
@@ -144,13 +150,7 @@ export default function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <button
-              onClick={toggleLanguage}
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full text-sm font-medium text-visity-dark dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-            >
-              <Globe className="w-4 h-4" />
-              <span>{language.toUpperCase()}</span>
-            </button>
+            {/* Botão de mudar idioma removido */}
 
             <button
               onClick={toggleTheme}
@@ -165,10 +165,10 @@ export default function Header() {
             </button>
 
             <Link
-              to="/cadastro"
+              to="/dashboard"
               className="hidden md:block btn-primary text-sm"
             >
-              {t('nav.freeTrial') as string}
+              Login
             </Link>
 
             <button
@@ -213,20 +213,14 @@ export default function Header() {
               
               <hr className="my-4 border-gray-200 dark:border-gray-700" />
               
-              <button
-                onClick={toggleLanguage}
-                className="flex items-center gap-2 text-lg font-medium text-visity-dark dark:text-gray-300"
-              >
-                <Globe className="w-5 h-5" />
-                {language === 'pt' ? 'English' : 'Português'}
-              </button>
+              {/* Botão de mudar idioma removido */}
               
               <Link
-                to="/cadastro"
+                to="/dashboard"
                 className="btn-primary mt-4 text-center"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                {t('nav.freeTrial') as string}
+                Login
               </Link>
             </nav>
           </div>

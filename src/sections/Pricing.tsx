@@ -41,33 +41,18 @@ export default function Pricing() {
     },
     {
       name: t('pricing.pro.name') as string,
-      price: 'R$ 59,90',
-      period: t('pricing.pro.period') as string,
+      price: 'R$ 69,90',
+      period: '/usuário/mês',
       badge: t('pricing.pro.badge') as string,
       features: [
-        t('pricing.pro.feature1') as string,
-        t('pricing.pro.feature2') as string,
-        t('pricing.pro.feature3') as string,
-        t('pricing.pro.feature4') as string,
-        t('pricing.pro.feature5') as string,
-        t('pricing.pro.feature6') as string,
+        'Usuários ilimitados',
+        'Visitas ilimitadas',
+        'Check-in com geolocalização precisa',
+        'Relatórios completos',
       ],
       cta: t('pricing.pro.cta') as string,
       ctaLink: '/pagamento',
       featured: true,
-    },
-    {
-      name: t('pricing.enterprise.name') as string,
-      price: 'Personalizado',
-      features: [
-        t('pricing.enterprise.feature1') as string,
-        t('pricing.enterprise.feature2') as string,
-        t('pricing.enterprise.feature3') as string,
-        t('pricing.enterprise.feature4') as string,
-        t('pricing.enterprise.feature5') as string,
-      ],
-      cta: t('pricing.enterprise.cta') as string,
-      ctaLink: '#chat',
     },
   ];
 
@@ -147,7 +132,7 @@ export default function Pricing() {
 
         <div
           ref={cardsRef}
-          className="grid md:grid-cols-3 gap-6 lg:gap-8 items-start"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center max-w-3xl mx-auto"
         >
           {plans.map((plan, index) => {
             const isFeatured = plan.featured;
@@ -162,8 +147,8 @@ export default function Pricing() {
                 onMouseLeave={() => setHoveredIndex(null)}
               >
                 {plan.badge && (
-                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10">
-                    <div className="flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-visity-primary to-visity-secondary text-white text-sm font-semibold rounded-full animate-pulse-glow">
+                  <div className={`absolute -top-7 left-0 w-full flex justify-center ${isHovered ? 'z-30' : 'z-10'}`}>
+                    <div className="flex items-center gap-1.5 px-4 py-1.5 bg-gradient-to-r from-visity-primary to-visity-secondary text-white text-sm font-semibold rounded-full animate-pulse-glow shadow-lg">
                       <Sparkles className="w-4 h-4" />
                       {plan.badge}
                     </div>
@@ -171,65 +156,52 @@ export default function Pricing() {
                 )}
 
                 <div
-                  className={`relative h-full rounded-3xl p-6 lg:p-8 transition-all duration-300 ease-expo-out ${
+                  className={`relative h-full rounded-3xl p-8 lg:p-10 min-w-[340px] lg:min-w-[400px] transition-all duration-300 ease-expo-out shadow-2xl border-2 border-transparent hover:border-visity-secondary ${
                     isFeatured
                       ? 'bg-gradient-to-br from-visity-primary to-visity-secondary text-white shadow-glow-blue'
                       : 'bg-white dark:bg-gray-900 text-visity-dark dark:text-white shadow-lg'
-                  } ${isHovered ? 'scale-105' : ''} ${isOtherHovered ? 'opacity-70 blur-[2px]' : ''}`}
+                  } ${isHovered ? 'scale-105 z-20' : ''} ${isOtherHovered ? 'opacity-60 blur-[3px]' : ''}`}
                 >
-                  <h3 className={`text-xl font-semibold mb-4 ${isFeatured ? 'text-white' : 'text-visity-dark dark:text-white'}`}>
+                  <h3 className={`text-2xl font-extrabold mb-4 tracking-wide ${isFeatured ? 'text-white' : 'text-visity-dark dark:text-white'}`}>
                     {plan.name}
                   </h3>
 
                   <div className="mb-6">
-                    <span className={`${plan.price === 'Personalizado' ? 'text-2xl lg:text-3xl' : 'text-4xl lg:text-5xl'} font-bold ${isFeatured ? 'text-white' : 'text-visity-dark dark:text-white'}`}>
+                    <span className="text-4xl lg:text-5xl font-extrabold whitespace-nowrap">
                       {plan.price}
                     </span>
                     {plan.period && (
-                      <span className={`text-sm ${isFeatured ? 'text-white/80' : 'text-visity-gray dark:text-gray-400'}`}>
+                      <span className="text-base ml-2 font-medium opacity-80">
                         {plan.period}
                       </span>
                     )}
                   </div>
 
-                  <ul className="space-y-3 mb-8">
+                  <ul className="space-y-4 mb-10">
                     {plan.features.map((feature, featureIndex) => (
                       <li key={featureIndex} className="flex items-start gap-3">
-                        <div className={`flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center mt-0.5 ${
+                        <div className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center mt-0.5 ${
                           isFeatured ? 'bg-white/20' : 'bg-visity-accent/20'
                         }`}>
-                          <Check className={`w-3 h-3 ${isFeatured ? 'text-white' : 'text-visity-accent'}`} />
+                          <Check className={`w-4 h-4 ${isFeatured ? 'text-white' : 'text-visity-accent'}`} />
                         </div>
-                        <span className={`text-sm ${isFeatured ? 'text-white/90' : 'text-visity-gray dark:text-gray-400'}`}>
+                        <span className={`text-base ${isFeatured ? 'text-white/90' : 'text-visity-gray dark:text-gray-400'} whitespace-nowrap`}>
                           {feature}
                         </span>
                       </li>
                     ))}
                   </ul>
 
-                  {plan.ctaLink === '#chat' ? (
-                    <button
-                      onClick={handleEnterpriseClick}
-                      className={`w-full py-3 px-6 rounded-full font-semibold transition-all duration-200 ${
-                        isFeatured
-                          ? 'bg-white text-visity-primary hover:bg-gray-100 hover:scale-105'
-                          : 'bg-visity-primary text-white hover:bg-visity-secondary hover:scale-105'
-                      }`}
-                    >
-                      {plan.cta}
-                    </button>
-                  ) : (
-                    <Link
-                      to={plan.ctaLink}
-                      className={`block w-full py-3 px-6 rounded-full font-semibold text-center transition-all duration-200 ${
-                        isFeatured
-                          ? 'bg-white text-visity-primary hover:bg-gray-100 hover:scale-105'
-                          : 'bg-visity-primary text-white hover:bg-visity-secondary hover:scale-105'
-                      }`}
-                    >
-                      {plan.cta}
-                    </Link>
-                  )}
+                  <Link
+                    to={plan.ctaLink}
+                    className={`block w-full py-3 px-6 rounded-full font-bold text-center transition-all duration-200 text-lg shadow-lg ${
+                      isFeatured
+                        ? 'bg-white text-visity-primary hover:bg-gray-100 hover:scale-105'
+                        : 'bg-visity-primary text-white hover:bg-visity-secondary hover:scale-105'
+                    }`}
+                  >
+                    {plan.cta}
+                  </Link>
                 </div>
               </div>
             );

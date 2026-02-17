@@ -14,17 +14,31 @@ interface FAQItem {
 export default function FAQ() {
   const { t } = useLanguage();
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [search, setSearch] = useState("");
+  const [selectedTopic, setSelectedTopic] = useState<string | null>(null);
+  const [showMore, setShowMore] = useState<{ [key: number]: boolean }>({});
   const sectionRef = useRef<HTMLElement>(null);
   const headerRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<HTMLDivElement>(null);
 
-  const faqItems: FAQItem[] = [
-    { question: t('faq.q1') as string, answer: t('faq.a1') as string },
-    { question: t('faq.q2') as string, answer: t('faq.a2') as string },
-    { question: t('faq.q3') as string, answer: t('faq.a3') as string },
-    { question: t('faq.q4') as string, answer: t('faq.a4') as string },
-    { question: t('faq.q5') as string, answer: t('faq.a5') as string },
+  // Exemplo de tópicos (pode ajustar conforme necessidade)
+  const topics = ["Geral", "Cadastro", "Visitas", "Relatórios", "Usuários"];
+
+  // Exemplo de perguntas com tópicos
+  const faqItems: (FAQItem & { topic?: string })[] = [
+    { question: t('faq.q1') as string, answer: t('faq.a1') as string, topic: "Geral" },
+    { question: t('faq.q2') as string, answer: t('faq.a2') as string, topic: "Cadastro" },
+    { question: t('faq.q3') as string, answer: t('faq.a3') as string, topic: "Visitas" },
+    { question: t('faq.q4') as string, answer: t('faq.a4') as string, topic: "Relatórios" },
+    { question: t('faq.q5') as string, answer: t('faq.a5') as string, topic: "Usuários" },
   ];
+
+  // Filtragem por pesquisa e tópico
+  const filteredItems = faqItems.filter(item => {
+    const matchesSearch = item.question.toLowerCase().includes(search.toLowerCase()) || item.answer.toLowerCase().includes(search.toLowerCase());
+    const matchesTopic = selectedTopic ? item.topic === selectedTopic : true;
+    return matchesSearch && matchesTopic;
+  });
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -100,11 +114,35 @@ export default function FAQ() {
           </p>
         </div>
 
+        {/* Campo de pesquisa */}
+        <div className="mb-6 flex flex-col gap-4">
+          <input
+            type="text"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            placeholder="Pesquisar dúvida..."
+            className="w-full rounded-full border border-visity-accent px-4 py-3 text-lg focus:outline-none focus:ring-2 focus:ring-visity-primary bg-white dark:bg-gray-900 text-visity-dark dark:text-white"
+          />
+          {/* Botões de tópicos */}
+          <div className="flex flex-wrap gap-2 justify-center">
+            {topics.map(topic => (
+              <button
+                key={topic}
+                className={`px-4 py-2 rounded-full font-semibold text-sm transition-all border ${selectedTopic === topic ? 'bg-visity-primary text-white border-visity-primary' : 'bg-white dark:bg-gray-800 text-visity-dark dark:text-white border-visity-accent'}`}
+                onClick={() => setSelectedTopic(selectedTopic === topic ? null : topic)}
+              >
+                {topic}
+              </button>
+            ))}
+          </div>
+        </div>
+
         {/* FAQ Items */}
         <div ref={itemsRef} className="space-y-4">
-          {faqItems.map((item, index) => {
+          {filteredItems.map((item, index) => {
             const isOpen = openIndex === index;
-            
+            const answerLong = item.answer.length > 180;
+            const showFull = showMore[index];
             return (
               <div
                 key={index}
@@ -150,8 +188,16 @@ export default function FAQ() {
                 >
                   <div className="px-6 pb-5">
                     <p className="text-visity-gray dark:text-gray-400 leading-relaxed">
-                      {item.answer}
+                      {answerLong && !showFull ? item.answer.slice(0, 180) + '...' : item.answer}
                     </p>
+                    {answerLong && (
+                      <button
+                        className="mt-2 text-visity-primary font-semibold text-sm underline"
+                        onClick={() => setShowMore(prev => ({ ...prev, [index]: !showFull }))}
+                      >
+                        {showFull ? 'Mostrar menos' : 'Mostrar mais'}
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

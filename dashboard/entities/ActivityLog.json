@@ -1,0 +1,55 @@
+{
+  "name": "ActivityLog",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "enum": [
+        "check_in",
+        "check_out",
+        "visit_created",
+        "visit_updated",
+        "visit_cancelled",
+        "user_login",
+        "user_logout",
+        "report_generated",
+        "settings_changed",
+        "gps_alert"
+      ],
+      "description": "Type of action performed"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Email of user who performed the action"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Name of user who performed the action"
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Type of entity affected (Visit, Client, User)"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID of the affected entity"
+    },
+    "details": {
+      "type": "string",
+      "description": "Additional details about the action"
+    },
+    "ip_address": {
+      "type": "string"
+    },
+    "latitude": {
+      "type": "number"
+    },
+    "longitude": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "action",
+    "user_email"
+  ]
+}

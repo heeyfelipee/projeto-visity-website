@@ -161,6 +161,8 @@ export default function DashboardPreview() {
     { name: 'João Silva', action: 'Em visita - Cliente XYZ', time: '12 min atrás', status: 'pending', avatar: 'JS' },
     { name: 'Maria Santos', action: 'Check-in em Cliente DEF', time: '18 min atrás', status: 'success', avatar: 'MS' },
     { name: 'Pedro Costa', action: 'Alerta: GPS desativado', time: '25 min atrás', status: 'alert', avatar: 'PC' },
+    { name: 'Fernanda Lima', action: 'Check-in em Cliente GHI', time: '30 min atrás', status: 'success', avatar: 'FL' },
+    { name: 'Rafael Souza', action: 'Check-out - Visita concluída', time: '35 min atrás', status: 'success', avatar: 'RS' },
   ];
 
   useEffect(() => {
@@ -345,32 +347,32 @@ export default function DashboardPreview() {
                   </div>
                 </div>
 
-                <div className="bg-slate-50 dark:bg-gray-800/50 rounded-2xl p-4">
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-sm font-medium text-visity-dark dark:text-white">Atividades Recentes</span>
+                <div className="bg-slate-50 dark:bg-[rgba(31,41,55,0.5)] rounded-2xl p-5">
+                  <div className="flex items-center justify-between mb-3">
+                    <span className="text-base font-semibold text-white">Atividades Recentes</span>
                     <button className="text-xs text-visity-secondary hover:underline">Ver todas</button>
                   </div>
-                  <div className="space-y-3 max-h-[200px] overflow-y-auto custom-scrollbar">
+                  <div className="space-y-1 max-h-[370px] overflow-y-auto scrollbar-thin scrollbar-thumb-visity-secondary/40 scrollbar-track-transparent pr-1">
                     {activities.map((activity, index) => (
                       <div
                         key={index}
-                        className="flex items-center gap-3 p-2 rounded-xl hover:bg-white dark:hover:bg-gray-700/50 transition-colors"
+                        className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-[#263143] transition-colors"
                       >
-                        <div className="w-10 h-10 rounded-full bg-gradient-to-br from-visity-primary to-visity-secondary flex items-center justify-center text-white text-sm font-medium flex-shrink-0">
+                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-visity-primary to-visity-secondary flex items-center justify-center text-white text-sm font-semibold flex-shrink-0">
                           {activity.avatar}
                         </div>
                         <div className="flex-1 min-w-0">
-                          <div className="text-sm font-medium text-visity-dark dark:text-white truncate">
+                          <div className="text-sm font-semibold text-white truncate">
                             {activity.name}
                           </div>
-                          <div className="text-xs text-visity-gray dark:text-gray-400 truncate">
+                          <div className="text-xs text-[#b0b8c9] truncate">
                             {activity.action}
                           </div>
                         </div>
-                        <div className="flex items-center gap-2 flex-shrink-0">
-                          <span className="text-xs text-visity-gray dark:text-gray-400">{activity.time}</span>
-                          {activity.status === 'success' && <CheckCircle className="w-4 h-4 text-visity-accent" />}
-                          {activity.status === 'pending' && <Clock className="w-4 h-4 text-yellow-500" />}
+                        <div className="flex items-center gap-2 flex-shrink-0 ml-2">
+                          <span className="text-xs text-[#b0b8c9]">{activity.time}</span>
+                          {activity.status === 'success' && <CheckCircle className="w-4 h-4 text-green-400" />}
+                          {activity.status === 'pending' && <Clock className="w-4 h-4 text-yellow-400" />}
                           {activity.status === 'alert' && <AlertCircle className="w-4 h-4 text-red-500" />}
                         </div>
                       </div>

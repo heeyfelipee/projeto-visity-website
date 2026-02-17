@@ -1,0 +1,39 @@
+{
+  "name": "Team",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Team name"
+    },
+    "description": {
+      "type": "string"
+    },
+    "manager_email": {
+      "type": "string",
+      "description": "Email of team manager"
+    },
+    "member_emails": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of team member emails"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "inactive"
+      ],
+      "default": "active"
+    },
+    "color": {
+      "type": "string",
+      "description": "Team color for UI display"
+    }
+  },
+  "required": [
+    "name"
+  ]
+}

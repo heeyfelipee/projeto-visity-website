@@ -2,6 +2,26 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Scrollbar customizada para atividades recentes */
+.scrollbar-thin {
+  scrollbar-width: thin;
+}
+.scrollbar-thumb-visity-secondary\/40::-webkit-scrollbar-thumb {
+  background-color: #2e3a4d;
+  border-radius: 8px;
+}
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  background: transparent;
+}
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background-color: #2e3a4d;
+  border-radius: 8px;
+}
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 @layer base {
   :root {
     /* Visity Brand Colors */

@@ -1,0 +1,11 @@
+{
+  "name": "dashboard-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "dependencies": {
+    "react-calendar": "^3.8.0"
+  },
+  "devDependencies": {
+    "@types/react-calendar": "^3.6.2"
+  }
+}

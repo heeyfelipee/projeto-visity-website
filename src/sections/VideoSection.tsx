@@ -48,8 +48,12 @@ export default function VideoSection() {
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-visity-dark dark:text-white mb-6">
             Veja o Visity em ação
           </h2>
-          <p className="text-lg text-visity-gray dark:text-gray-400 max-w-2xl mx-auto">
-            Assista à apresentação completa do sistema e descubra como o Visity pode transformar sua gestão de visitas
+        </div>
+
+        <div className="text-center mb-8">
+          <p className="text-visity-secondary dark:text-visity-secondary text-lg font-bold animate-pulse text-center mt-2">
+            🚀 Prepare-se para transformar sua experiência!<br />
+            ✨ Assista ao nosso vídeo e descubra o futuro das visitas inteligentes!
           </p>
         </div>
 
@@ -74,18 +78,14 @@ export default function VideoSection() {
               <button className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
                 <Play className="w-5 h-5 text-white" />
               </button>
-              
               {/* Progress Bar */}
               <div className="flex-1 h-1 bg-white/30 rounded-full overflow-hidden">
                 <div className="w-1/3 h-full bg-visity-primary rounded-full" />
               </div>
-              
               <span className="text-white/80 text-sm">05:23 / 15:00</span>
-              
               <button className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
                 <Volume2 className="w-5 h-5 text-white" />
               </button>
-              
               <button className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center hover:bg-white/30 transition-colors">
                 <Maximize className="w-5 h-5 text-white" />
               </button>
@@ -97,12 +97,6 @@ export default function VideoSection() {
           <div className="absolute top-4 right-4 w-20 h-20 border-r-2 border-t-2 border-white/20 rounded-tr-3xl" />
           <div className="absolute bottom-16 left-4 w-20 h-20 border-l-2 border-b-2 border-white/20 rounded-bl-3xl" />
           <div className="absolute bottom-16 right-4 w-20 h-20 border-r-2 border-b-2 border-white/20 rounded-br-3xl" />
-        </div>
-
-        <div className="mt-8 text-center">
-          <p className="text-visity-gray dark:text-gray-400 text-sm">
-            🎥 Substitua este placeholder pelo seu vídeo de apresentação
-          </p>
         </div>
       </div>
     </section>

@@ -18,8 +18,8 @@ const translations: Record<Language, Translations> = {
     },
     // Hero
     hero: {
-      headline: 'Gestão de Visitas em Campo Inteligente',
-      subheadline: 'Transforme visitas em fatos jurídicos. Economize 4 a 6 horas por semana. Sem achismo. Sem "ele disse, o cliente disse".',
+      headline: 'Plataforma Inteligente de Gestão de Visitas',
+      subheadline: `Transforme cada visita em evidência formal estruturada.\nElimine subjetividade. Reduza horas improdutivas.\nDecida com base em fatos documentados — não em narrativas conflitantes.`,
       ctaPrimary: 'Teste Grátis por 7 Dias',
       ctaSecondary: 'Ver Demonstração',
       trust1: '7 dias grátis',
@@ -33,11 +33,11 @@ const translations: Record<Language, Translations> = {
       subtitle: 'Deixe a papelada de lado. Tenha controle total sem complicação.',
       geo: {
         title: 'Geolocalização Precisa',
-        desc: 'Saiba exatamente onde seus técnicos estão em tempo real. Sem dúvidas, sem disputas.',
+        desc: 'Confirme, valide e comprove cada presença em campo com precisão absoluta.',
       },
       checkin: {
-        title: 'Check-in/Check-out Inteligente',
-        desc: 'Registro automático de entrada e saída com validação de GPS e horário.',
+        title: 'Check-in Inteligente',
+        desc: 'Cada visita é registrada com validação precisa de GPS e horário, incluindo documentação estruturada de observações, imagens e arquivos.',
       },
       time: {
         title: 'Economia de Tempo',

@@ -1,7 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LoginVisity from './components/auth/LoginVisity';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { LanguageProvider } from '@/context/LanguageContext';
 import Home from '@/pages/Home';
+import DashboardArea from '@/pages/DashboardArea';
 import Register from '@/pages/Register';
 import Payment from '@/pages/Payment';
 import About from '@/pages/About';
@@ -26,6 +28,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cadastro" element={<Register />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/pagamento" element={<Payment />} />
             <Route path="/sobre" element={<About />} />
             <Route path="/blog" element={<Blog />} />
@@ -37,6 +40,8 @@ function App() {
             <Route path="/privacidade" element={<Privacy />} />
             <Route path="/termos" element={<Terms />} />
             <Route path="/cookies" element={<Cookies />} />
+            <Route path="/dashboard" element={<LoginVisity />} />
+            <Route path="/dashboard-area" element={<DashboardArea />} />
           </Routes>
           <ChatWidget />
           <CookieBanner />
